@@ -7,7 +7,6 @@ function addTask(task) {
   const li = document.createElement("li");
   li.id = `task-${task.id}`;
   li.classList.toggle("completed", task.completed);
-  console.log(li)
   const textSpan = document.createElement("span");
   textSpan.textContent = task.title;
   li.appendChild(textSpan);
@@ -16,7 +15,6 @@ function addTask(task) {
   deleteButton.addEventListener("click", function () {
     deleteTask(task.id);
   });
-  console.log(li)
   li.appendChild(deleteButton);
   const completedCheckbox = document.createElement("input");
   completedCheckbox.type = "checkbox";
@@ -24,13 +22,11 @@ function addTask(task) {
   completedCheckbox.addEventListener("change", function () {
     updateTask(task.id, completedCheckbox.checked);
   });
-  console.log(li)
   li.insertBefore(completedCheckbox, textSpan);
   taskList.appendChild(li);
 }
 
 function addTaskToServer(text) {
-  console.log(text)
   fetch("http://localhost:8000/api/tasks", {
     method: "POST",
     headers: {
@@ -60,7 +56,6 @@ function deleteTask(id) {
 }
 
 function updateTaskOnServer(id, completed) {
-  console.log(completed)
   fetch(`http://localhost:8000/api/tasks/${id}`, {
     method: "PATCH",
     headers: {
